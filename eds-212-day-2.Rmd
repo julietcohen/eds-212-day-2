@@ -12,7 +12,8 @@ library("tidyverse")
 library("palmerpenguins")
 
 ```
-#Derivatives in R
+
+# Derivatives in R
 
 ## A
 ```{r}
@@ -24,7 +25,8 @@ df_dx <- D(expr = fx, name = 'x')
 
 eval(expr = df_dx)
 ```
-##B
+
+## B
 ```{r}
 pa <- expression(2*(3*a + 2)^4 - 5)
 
@@ -34,7 +36,8 @@ dp_da <- D(expr = pa, name = 'a')
 
 eval(expr = dp_da)
 ```
-##C
+
+## C
 ```{r}
 gt <- expression((-4*t)/((t^2) + 1)^3)
 
@@ -44,7 +47,8 @@ dg_dt <- D(expr = gt, name = 't')
 
 eval(expr = dg_dt)
 ```
-##Higher order univariate derivatives
+
+## Higher order univariate derivatives
 ```{r}
 gz <- expression(4.6 - (1.9*z^3))
 
@@ -59,4 +63,50 @@ d2g_dz2
 
 #eval(d2g_dz2, 'z')
 ```
+
+## Partial Derivatives
+```{r}
+fxyz <- expression(2*x^2*y - 3*x + 1 +4*z^4*x)
+
+Df_Dx <- D(expr = fxyz, 'x')
+Df_Dx
+
+Df_Dy <- D(expr = fxyz, 'y')
+Df_Dy
+
+Df_Dz <- D(expr = fxyz, 'z')
+Df_Dz
+```
+
+## Section 4
+```{r}
+Fb <- function(b){
+  (2.4*exp((-0.05)*b)*sin(b))
+}
+
+ggplot(data = NULL) +
+  stat_function(fun = Fb) +
+  xlim(min= -0.5, max = 0.5)
+
+#b <- seq(from = -0.5, to = 0.5)
+```
+
+```{r}
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+       geom_point(aes(color = species)) +
+         labs(x = "Penguin Bill Length (mm)",
+              y = "Penguin Bill Depth (mm)",
+              title = "Penguin Bill Measurements")
+```
+
+
+```{r}
+ggplot(data = penguins, aes(y = flipper_length_mm, x = species)) +
+  geom_jitter(aes(color = species)) +
+  labs(x = "Penguin Species",
+       y = "Flipper Length (mm)",
+       title = "Flipper Length by Penguin Species")
+
+```
+
 
