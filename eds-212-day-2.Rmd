@@ -13,3 +13,35 @@ library("palmerpenguins")
 
 ```
 
+# A
+```{r}
+fx <- expression(x^2)
+
+x <- 3
+
+df_dx <- D(expr = fx, name = 'x')
+
+eval(expr = df_dx)
+```
+```{r}
+pa <- expression(2*(3*a + 2)^4 - 5)
+
+a <- 1.2
+
+dp_da <- D(expr = pa, name = 'a')
+
+eval(expr = dp_da)
+```
+```{r}
+gt <- expression((-4*t)/((t^2) + 1)^3)
+
+t <- 0
+
+dg_dt <- D(expr = gt, name = 't')
+
+eval(expr = dg_dt)
+```
+```{r}
+
+```
+
